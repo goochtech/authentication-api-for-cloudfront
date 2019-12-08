@@ -1,0 +1,48 @@
+# Welcome to Serverless!
+#
+# This file is the main config file for your service.
+# It's very minimal at this point and uses default values.
+# You can always add more config options for more control.
+# We've included some commented out config examples here.
+# Just uncomment any of them to get that config option.
+#
+# For full config options, check the docs:
+#    docs.serverless.com
+#
+# Happy Coding!
+
+service: s3-login-service # NOTE: update this with your service name
+
+# You can pin your service to only deploy with a specific Serverless version
+# Check out our docs for more details
+# frameworkVersion: "=X.X.X"
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stackName: s3-login-service
+  apiName: s3-login-service
+functions:
+  s3-login-service:
+    handler: index.handler
+    name: s3-login-service
+    description: A backend API service for securing S3
+    memorySize: 2048
+    timeout: 6
+    events:
+      - http:
+          path: login
+          method: post
+          integration: lambda
+          cors: false
+          response:
+            headers:
+              Content-Type: "'application/json'"
+              Cache-Control: "'max-age=0'"
+              Access-Control-Allow-Origin: "'*'"
+            statusCodes:
+              403:
+                pattern: 'Forbidden:.*' # JSON response
+                template: $input.path("$.errorMessage") # JSON return object
+                headers:
+                  Content-Type: "'application/json+hal'"

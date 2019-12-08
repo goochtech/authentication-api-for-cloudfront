@@ -1,0 +1,21 @@
+{
+  "name": "lambda-api-gateway-backend",
+  "version": "1.0.0",
+  "description": "Drops a valid cookie on successful login",
+  "main": "index.js",
+  "scripts": {
+    "deploy-dev": "serverless deploy --stage dev --region us-west-2",
+    "release-prod": "serverless deploy --stage prod --region us-west-2",
+    "start": "ntl"
+  },
+  "author": "Gooch",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.24.0"
+  },
+  "devDependencies": {
+    "ntl": "^4.0.0"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "lambda-edgelocation-auth-check",
+  "version": "1.0.0",
+  "description": "checks that the user has a valid cookie",
+  "main": "index.js",
+  "scripts": {
+    "remove-zip": "rm lambda.zip",
+    "package-zip": "zip lambda.zip index.js && zip lambda.zip package.json && zip -r lambda.zip node_modules/*"
+  },
+  "author": "Gooch",
+  "license": "ISC",
+  "dependencies": {
+    "jsonwebtoken": "^8.5.1",
+    "keygrip": "^1.1.0",
+    "moment": "^2.24.0"
+  }
+}
